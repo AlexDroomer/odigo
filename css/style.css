@@ -598,7 +598,7 @@ img{
     left:0;
     width:100%;
     background: rgba(21, 24, 36, 0.6);
-    padding: 16px 25px;
+    padding: 15px 25px;
 }
 
 .top__card-title{
@@ -931,7 +931,7 @@ img{
     }
     .tour__pic_mob-first{
         -ms-grid-row: -1;
-            grid-row-start: -1;
+        grid-row-start: -1;
     }
     .tours__tour{
         margin-bottom: 50px;
