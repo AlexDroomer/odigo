@@ -1,5 +1,5 @@
 import 'normalize.css';
-import './style.css';
+import './styles.scss';
 import Alpine, { AlpineComponent } from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -14,6 +14,8 @@ type FeaturesStore = AlpineComponent<{
 
 const featuresStore = {
   on: false,
+  userInputPlace: '',
+  userInputAction: '',
   categories: [
     { name: 'Articles', link: '#articles' },
     { name: 'Locations', link: '#locations' },
@@ -40,6 +42,21 @@ const featuresStore = {
     const element = document.querySelector<HTMLElement>(link)!;
     element.scrollIntoView({ behavior: 'smooth' });
   },
+  sendRequest(form: HTMLFormElement) {
+    const data = new FormData(form);
+
+    for (let [key, value] of data) {
+      console.log(`${key} - ${value}`);
+    }
+  },
+  openModal() {
+    const dialogElement = document.querySelector<HTMLDialogElement>('#sendRequestDialog')!
+    dialogElement.showModal()
+  },
+  closeModal() {
+    const dialogElement = document.querySelector<HTMLDialogElement>('#sendRequestDialog')!
+    dialogElement.close()
+  }
 };
 
 Alpine.store('features', featuresStore);
