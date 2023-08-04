@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Discover Amazing places in Japan">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="style" />
     <link rel="icon" type="image/svg+xml" href="/svg/odigo-logo.svg" />
-    <title>Discover Amazing places in Japan</title>
+    <title>Odigo</title>
   </head>
   <body>
     <!-- Header Start -->
@@ -29,6 +30,15 @@
             class="header__nav"
             :class="$store.features.on ? 'header__nav_active' : ''"
           >
+            <button
+              type="button"
+              class="header__nav-close"
+              x-ref="close"
+              @click="$store.features.toggleMenu()"
+            >
+              <span class="header__nav-close-line"></span>
+              <span class="header__nav-close-line"></span>
+            </button>
             <ul class="header__list">
               <template x-for="category in $store.features.categories">
                 <li class="header__item">
@@ -41,22 +51,20 @@
                 </li>
               </template>
             </ul>
-            <div
-              class="header__nav-close"
-              @click="$store.features.toggleMenu()"
-            >
-              <span class="header__nav-close-line"></span>
-              <span class="header__nav-close-line"></span>
-            </div>
           </nav>
-          <div
+          <button
+            type="button"
+            title="Navigation menu trigger"
             class="header__burger burger"
-            @click="$store.features.toggleMenu()"
+            @click="() => {
+              $store.features.toggleMenu();
+              $refs.close.focus();
+              }"
           >
             <span class="burger__line burger__line_first"></span>
             <span class="burger__line burger__line_second"></span>
             <span class="burger__line burger__line_third"></span>
-          </div>
+          </button>
         </div>
       </div>
     </header>
@@ -79,7 +87,7 @@
             class="search-form"
           >
             <fieldset class="search-form__wrap">
-              <p class="search-form__info">
+              <div class="search-form__info">
                 <input
                   type="text"
                   name="user-like-to-do"
@@ -102,7 +110,7 @@
                 >
                   Search
                 </button>
-              </p>
+              </div>
             </fieldset>
           </form>
         </div>
@@ -118,7 +126,14 @@
             </p>
           </section>
           <menu>
-            <button id="close" @click="$store.features.closeModal()">Got it!</button>
+            <button
+              type="button"
+              aria-label="Close modal"
+              id="close"
+              @click="$store.features.closeModal()"
+            >
+              Got it!
+            </button>
           </menu>
         </dialog>
       </section>
@@ -134,6 +149,7 @@
                   src="/svg/church-icon.svg"
                   alt="Welcome to Odigo!"
                   class="benefits__card-thumb"
+                  loading="lazy"
                 />
               </div>
               <h3 class="benefits__card-title">Welcome to Odigo!</h3>
@@ -141,7 +157,9 @@
                 Jump off balcony, onto stranger's head. Chase ball of string
                 hide when guests come over.
               </p>
-              <a href="!#" class="benefits__card-more">LEARN MORE</a>
+              <a href="!#" class="benefits__card-more"
+                >Learn more about Odigo</a
+              >
             </div>
             <div class="benefits__card">
               <div class="benefits__card-pic">
@@ -151,6 +169,7 @@
                   height="65"
                   alt="Your Personal Japan Guide"
                   class="benefits__card-thumb"
+                  loading="lazy"
                 />
               </div>
               <h3 class="benefits__card-title">Your Personal Japan Guide</h3>
@@ -159,7 +178,9 @@
                 Jump off balcony, onto stranger's head. Chase ball of string
                 hide when guests come over.
               </p>
-              <a href="!#" class="benefits__card-more">LEARN MORE</a>
+              <a href="!#" class="benefits__card-more"
+                >Read guide about Japan</a
+              >
             </div>
             <div class="benefits__card">
               <div class="benefits__card-pic">
@@ -167,6 +188,7 @@
                   src="/svg/building-icon.svg"
                   alt="Promoting Local Businesses"
                   class="benefits__card-thumb"
+                  loading="lazy"
                 />
               </div>
               <h3 class="benefits__card-title">Promoting Local Businesses</h3>
@@ -174,7 +196,7 @@
                 Jump off balcony, onto stranger's head. Chase ball of string
                 hide when guests come over.
               </p>
-              <a href="!#" class="benefits__card-more">LEARN MORE</a>
+              <a href="!#" class="benefits__card-more">See Businesses</a>
             </div>
           </div>
         </div>
@@ -195,9 +217,10 @@
                 src="/mount-fuji-min.jpg"
                 alt="Mount Fuji"
                 class="places__card-pic places__card-pic_size_lg"
+                loading="lazy"
               />
               <figcaption class="places__card-title">Mount Fuji</figcaption>
-              <a href="" class="places__card-link"></a>
+              <a href="!#" title="Mount Fuji" class="places__card-link"></a>
             </figure>
 
             <figure class="places__card places__card_size_lg">
@@ -205,9 +228,10 @@
                 src="/kyoto-min.jpg"
                 alt="Kyoto"
                 class="places__card-pic places__card-pic_size_lg"
+                loading="lazy"
               />
               <figcaption class="places__card-title">Kyoto</figcaption>
-              <a href="" class="places__card-link"></a>
+              <a href="!#" title="Kyoto" class="places__card-link"></a>
             </figure>
 
             <figure class="places__card places__card_size_sm">
@@ -215,9 +239,10 @@
                 src="/tokyo-min.jpg"
                 alt="Tokyo"
                 class="places__card-pic places__card-pic_size_sm"
+                loading="lazy"
               />
               <figcaption class="places__card-title">Tokyo</figcaption>
-              <a href="" class="places__card-link"></a>
+              <a href="!#" title="Tokyo" class="places__card-link"></a>
             </figure>
 
             <figure class="places__card places__card_size_sm">
@@ -225,9 +250,10 @@
                 src="/niigata-min.jpg"
                 alt="Niigata"
                 class="places__card-pic places__card-pic_size_sm"
+                loading="lazy"
               />
               <figcaption class="places__card-title">Niigata</figcaption>
-              <a href="" class="places__card-link"></a>
+              <a href="!#" title="Niigata" class="places__card-link"></a>
             </figure>
 
             <figure class="places__card places__card_size_sm">
@@ -235,9 +261,10 @@
                 src="/sapporo-min.jpg"
                 alt="Sapporo"
                 class="places__card-pic places__card-pic_size_sm"
+                loading="lazy"
               />
               <figcaption class="places__card-title">Sapporo</figcaption>
-              <a href="" class="places__card-link"></a>
+              <a href="!#" title="Sapporo" class="places__card-link"></a>
             </figure>
           </div>
         </div>
@@ -252,6 +279,7 @@
                 src="/tour-1-min.jpg"
                 alt="Prefecture in Focus: Tottori"
                 class="tour__thumb"
+                loading="lazy"
               />
             </div>
             <div class="tour__info">
@@ -283,6 +311,7 @@
                 src="/tour-2-min.jpg"
                 alt="Featured Neighborhood: Kyoto’s Arashiyama"
                 class="tour__thumb"
+                loading="lazy"
               />
             </div>
           </div>
@@ -300,6 +329,7 @@
                   src="/top-1-min.jpg"
                   alt="NAGOYA"
                   class="top__card-thumb"
+                  loading="lazy"
                 />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">NAGOYA</h3>
@@ -326,6 +356,7 @@
                   src="/top-2-min.jpg"
                   alt="NIIGATA"
                   class="top__card-thumb"
+                  loading="lazy"
                 />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">NIIGATA</h3>
@@ -347,7 +378,12 @@
             </div>
             <div class="top__card">
               <div class="top__card-pic">
-                <img src="/top-3-min.jpg" alt="OSAKA" class="top__card-thumb" />
+                <img
+                  src="/top-3-min.jpg"
+                  alt="OSAKA"
+                  class="top__card-thumb"
+                  loading="lazy"
+                />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">OSAKA</h3>
                   <div class="top__card-likes">
@@ -373,6 +409,7 @@
                   src="/top-4-min.jpg"
                   alt="SAITAMA"
                   class="top__card-thumb"
+                  loading="lazy"
                 />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">SAITAMA</h3>
@@ -394,7 +431,12 @@
             </div>
             <div class="top__card">
               <div class="top__card-pic">
-                <img src="/top-5-min.jpg" alt="UENO" class="top__card-thumb" />
+                <img
+                  src="/top-5-min.jpg"
+                  alt="UENO"
+                  class="top__card-thumb"
+                  loading="lazy"
+                />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">UENO</h3>
                   <div class="top__card-likes">
@@ -420,6 +462,7 @@
                   src="/top-6-min.jpg"
                   alt="SHIBUYA"
                   class="top__card-thumb"
+                  loading="lazy"
                 />
                 <div class="top__card-stats">
                   <h3 class="top__card-title">SHIBUYA</h3>
@@ -446,15 +489,33 @@
       <!-- Videos Start -->
       <div class="videos" id="videos">
         <div class="videos__wrapper">
-          <div class="video__item"></div>
-          <iframe
-            class="video__element"
-            src="https://www.youtube.com/embed/Et7O5-CzJZg"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <div class="video">
+            <a class="video__link" title="Walking in the Rain Tokyo, Japan Video" href="https://youtu.be/Et7O5-CzJZg">
+              <picture>
+                <source
+                  srcset="
+                    https://i.ytimg.com/vi_webp/Et7O5-CzJZg/maxresdefault.webp
+                  "
+                  type="image/webp"
+                />
+                <img
+                  class="video__media"
+                  loading="lazy"
+                  src="https://i.ytimg.com/vi/Et7O5-CzJZg/maxresdefault.jpg"
+                  alt="Walking in the Rain Tokyo, Japan"
+                />
+              </picture>
+            </a>
+            <button class="video__button" aria-label="Play video">
+              <svg width="68" height="48" viewBox="0 0 68 48">
+                <path
+                  class="video__button-shape"
+                  d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                ></path>
+                <path class="video__button-icon" d="M 45,24 27,14 27,34"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <!-- Videos End -->
@@ -469,6 +530,7 @@
               src="/svg/odigo-logo-footer.svg"
               alt="Odigo"
               class="footer__logo-pic"
+              loading="lazy"
             />
           </div>
           <nav class="footer__nav">
@@ -477,16 +539,16 @@
                 <h3 class="footer__menu-title">Company</h3>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">About</a>
+                <a href="!#" class="footer__menu-link">About</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Team</a>
+                <a href="!#" class="footer__menu-link">Team</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Careers</a>
+                <a href="!#" class="footer__menu-link">Careers</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Privacy Policy</a>
+                <a href="!#" class="footer__menu-link">Privacy Policy</a>
               </li>
             </ul>
 
@@ -495,16 +557,16 @@
                 <h3 class="footer__menu-title">Location</h3>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Tokyo</a>
+                <a href="!#" class="footer__menu-link">Tokyo</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Kyoto</a>
+                <a href="!#" class="footer__menu-link">Kyoto</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Osaka</a>
+                <a href="!#" class="footer__menu-link">Osaka</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Hokkaido</a>
+                <a href="!#" class="footer__menu-link">Hokkaido</a>
               </li>
             </ul>
 
@@ -513,16 +575,16 @@
                 <h3 class="footer__menu-title">Social Media</h3>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Facebook</a>
+                <a href="!#" class="footer__menu-link">Facebook</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Twitter</a>
+                <a href="!#" class="footer__menu-link">Twitter</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Instagram</a>
+                <a href="!#" class="footer__menu-link">Instagram</a>
               </li>
               <li class="footer__menu-item">
-                <a href="" class="footer__menu-link">Youtube</a>
+                <a href="!#" class="footer__menu-link">Youtube</a>
               </li>
             </ul>
           </nav>

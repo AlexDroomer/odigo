@@ -1,34 +1,29 @@
-/* lato-700 - latin */
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'),
-    url('/fonts/lato-v16-latin-700.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/fonts/lato-v16-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
 /* lato-regular - latin */
 @font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: local('Lato Regular'), local('Lato-Regular'),
-    url('/fonts/lato-v16-latin-regular.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/fonts/lato-v16-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/fonts/lato-v24-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
-
+/* lato-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'),
+    url('/fonts/lato-v24-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
 /* lato-900 - latin */
 @font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
   font-family: 'Lato';
   font-style: normal;
   font-weight: 900;
   src: local('Lato Black'), local('Lato-Black'),
-    url('/fonts/lato-v16-latin-900.woff2') format('woff2'),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('/fonts/lato-v16-latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/fonts/lato-v24-latin-900.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 body {
@@ -97,6 +92,9 @@ img {
   z-index: 20;
 
   &__nav {
+    &-close {
+      display: none;
+    }
     @media screen and (max-width: 767px) {
       width: 100%;
       height: 100%;
@@ -122,6 +120,9 @@ img {
         right: 20px;
         z-index: 11;
         cursor: pointer;
+        background-color: transparent;
+        border: none;
+        display: block;
 
         &-line {
           display: block;
@@ -200,6 +201,8 @@ img {
     height: 28px;
     position: relative;
     display: none;
+    background: transparent;
+    border: none;
     @media screen and (max-width: 767px) {
       display: block;
     }
@@ -323,6 +326,7 @@ dialog {
     font-weight: 500;
     font-size: 18px;
     color: #fff;
+    min-height: 52px;
 
     &:-internal-autofill-selected {
       background-color: transparent !important;
@@ -339,7 +343,7 @@ dialog {
       margin-right: 0;
       width: 100%;
       padding-bottom: 12px;
-      background: transparent url(/svg/circle-icon.svg) no-repeat left 2px;
+      background: transparent url(/svg/circle-icon.svg) no-repeat left 18px;
     }
 
     &::placeholder {
@@ -360,6 +364,7 @@ dialog {
     color: #fff;
     background: #187dff;
     cursor: pointer;
+    height: fit-content;
     @media screen and (max-width: 767px) {
       width: 100%;
     }
@@ -394,16 +399,18 @@ dialog {
   }
 
   &__title {
-    width: 100%;
     font-weight: 500;
     font-size: 35px;
     line-height: 42px;
     color: #102746;
     padding: 93px 100px 0 100px;
-    transform: translateY(-100%);
+    transform: translateY(-66%);
     background-color: white;
     @media screen and (max-width: 960px) {
-      padding: 55px 15px;
+      padding: 55px 0 0 15px;
+      margin: 0;
+      transform: translateY(-50%);
+
     }
   }
 
@@ -423,12 +430,12 @@ dialog {
     grid-column: span 1;
     margin-bottom: 112px;
     @media screen and (max-width: 960px) {
-      margin: 60px;
+      margin: 20px 40px;
     }
     @media screen and (max-width: 767px) {
       -ms-grid-column-span: 3;
       grid-column: span 3;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     &-pic {
@@ -700,7 +707,7 @@ dialog {
       grid-column: span 3;
     }
     @media screen and (max-width: 767px) {
-      grid-column: span 6;
+      grid-column: 2/ 6;
     }
 
     &-pic {
@@ -796,15 +803,71 @@ dialog {
 }
 
 .video {
-  &__item {
-    padding-top: 56.25%;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background-color: #000000;
+
+  &:hover .video__button-shape,
+  .video__button:focus .video__button-shape {
+    fill: #ff0000;
+    fill-opacity: 1;
   }
-  &__element {
+
+  &__link {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+
+  &__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    display: none;
+    padding: 0;
+    width: 68px;
+    height: 48px;
+    border: none;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &-shape {
+      fill: #212121;
+      fill-opacity: 0.8;
+    }
+
+    &-icon {
+      fill: #ffffff;
+    }
+  }
+
+  /* Enabled */
+
+  &--enabled {
+    cursor: pointer;
+  }
+
+  &--enabled .video__button {
+    display: block;
   }
 }
 
